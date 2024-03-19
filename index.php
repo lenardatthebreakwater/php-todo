@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form method="POST" action="addtodo.php">
+	<form method="POST" action="/addtodo.php">
 		<input type="text" name="todo_item" id="todo_item" autofocus required>
 		<button type="submit" hidden>Add Todo Item</button>
 	</form>
@@ -29,6 +29,8 @@
 	$conn = null;
 	$stmt = null;
 	?>
+
+	<button id="deleteTodosBtn">Clear Completed</button>
 
 	<script src="index.js"></script>
 </body>

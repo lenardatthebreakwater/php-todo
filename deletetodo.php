@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$todo_id = htmlspecialchars($_GET["todo_id"]);
 
 	if (!empty($todo_id) & (int) $_GET["todo_id"] != 0) {
