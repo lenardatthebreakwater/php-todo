@@ -15,6 +15,8 @@
 	
 	<?php
 	$conn = new PDO("sqlite:file:todo.db?mode=rwc");
+
+	$conn->exec("CREATE TABLE IF NOT EXISTS todo(todo_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, todo_item TEXT NOT NULL)");
 	
 	$stmt = $conn->prepare("SELECT * FROM todo");
 	$stmt->execute();

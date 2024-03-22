@@ -1,4 +1,5 @@
 <?php
+/*
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$todo_id = htmlspecialchars($_GET["todo_id"]);
 
@@ -22,4 +23,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 header("HTTP/1.1 405 Method Not Allowed");
 exit;
+*/
 ?>

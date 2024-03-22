@@ -1,6 +1,9 @@
 function main() {
 	let allTodo = document.querySelectorAll("li")
 	for (let i = 0; i < allTodo.length; i++) {
+		if (localStorage.getItem(allTodo[i].value) !== null) {
+			allTodo[i].classList.add("toBeDeleted")
+		}
 		allTodo[i].addEventListener("click", addTodoToStorage)
 	}
 
@@ -9,11 +12,16 @@ function main() {
 }
 
 function addTodoToStorage() {
-	console.log(this)
-	let todoID = this.value
-	let todoItem = this.innerText
-	this.classList.add("toBeDeleted")
-	localStorage.setItem(todoID, todoItem)
+	if (localStorage.getItem(this.value) === null) {
+		let todoID = this.value
+		let todoItem = this.innerText
+		this.classList.add("toBeDeleted")
+		localStorage.setItem(todoID, todoItem)
+		return
+	}
+
+	localStorage.removeItem(this.value)
+	this.classList.remove("toBeDeleted")
 }
 
 function deleteTodos() {
@@ -46,12 +54,18 @@ function getTodosFromStorage() {
 }
 
 function displayRemainingTodos(responseBody) {
+	/*
 	let ul = document.querySelector("ul")
 	ul.innerHTML = ""
 
 	responseBody.forEach((todo) => {
 		ul.innerHTML += `<li>${todo}</li>`
 	})
+	*/
+	let body = document.body
+	let new_element = document.createElement("p")
+	new_element.append(JSON.stringify(responseBody))
+	body.append(new_element)
 }
 
 main()
