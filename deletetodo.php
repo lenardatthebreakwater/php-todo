@@ -1,19 +1,38 @@
 <?php
-/*
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$todo_id = htmlspecialchars($_GET["todo_id"]);
+	$json_data = file_get_contents('php://input', false);
 
-	if (!empty($todo_id) & (int) $_GET["todo_id"] != 0) {
+	if (!empty($json_data)) {
 		$conn = new PDO("sqlite:file:todo.db?mode=rwc");
 
-		$stmt = $conn->prepare("DELETE FROM todo WHERE todo_id=:todo_id");
-		$stmt->bindParam(":todo_id", $todo_id);
+		$todosToBeDeleted = json_decode($json_data, true);
+
+		//print_r($todosToBeDeleted);
+
+		for ($i = 0; $i < count($todosToBeDeleted); $i++) {
+			$stmt = $conn->prepare("DELETE FROM todo WHERE todo_id=:todo_id");
+			$stmt->bindParam(":todo_id", $todosToBeDeleted[$i]["todoID"]);
+			$stmt->execute();
+		}
+
+		$stmt = $conn->prepare("SELECT * FROM todo");
 		$stmt->execute();
+		$rows = $stmt->fetchall();
+
+		//print_r(var_dump($rows));
+
+		$remainingTodos = [];
+		for ($i = 0; $i < count($rows); $i++) {
+			$remainingTodos[$rows[$i]["todo_id"]] = $rows[$i]["todo_item"];
+		}
+
+		//print_r(var_dump($remainingTodos));
 
 		$conn = null;
 		$stmt = null;
 
-		header("Location: index.php");
+		header('Content-Type: application/json');
+		echo json_encode($remainingTodos);
 		exit;
 	}
 
@@ -23,5 +42,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 header("HTTP/1.1 405 Method Not Allowed");
 exit;
-*/
 ?>
