@@ -7,6 +7,22 @@ function main() {
 		allTodo[i].addEventListener("click", toggleTodoFromStorage)
 	}
 
+	let showActiveBtn = document.querySelector("#showActiveBtn")
+	showActiveBtn.addEventListener("click", () => {
+		let ul = document.querySelector("ul")
+		ul.innerHTML = ""
+
+		allTodo.forEach((li) => {
+			console.log(li)
+			if (localStorage.getItem(li.value) === null) {
+				ul.append(li)
+			}
+		})
+	})
+
+	let showCompletedBtn = document.querySelector("#showCompletedBtn")
+	showCompletedBtn.addEventListener("click", showCompleted)
+
 	let deleteTodosBtn = document.querySelector("#deleteTodosBtn")
 	deleteTodosBtn.addEventListener("click", deleteTodos)
 }
@@ -23,6 +39,20 @@ function toggleTodoFromStorage() {
 
 	localStorage.removeItem(this.value)
 	this.classList.remove("toBeDeleted")
+}
+
+function showCompleted() {
+	let ul = document.querySelector("ul")
+	ul.innerHTML = ""
+
+	Object.keys(localStorage).forEach((key) => {
+		let li = document.createElement("li")
+		li.setAttribute("value", `${key}`)
+		li.append(localStorage.getItem(key))
+		li.classList.add("toBeDeleted")
+		li.addEventListener("click", toggleTodoFromStorage)
+		ul.append(li)
+	})
 }
 
 function deleteTodos() {
@@ -61,7 +91,7 @@ function displayRemainingTodos(responseBody) {
 	console.log(responseBody)
 
 	Object.keys(responseBody).forEach((key) => {
-		li = document.createElement("li")
+		let li = document.createElement("li")
 		li.setAttribute("value", `${key}`)
 		li.append(responseBody[key])
 		li.addEventListener("click", toggleTodoFromStorage)

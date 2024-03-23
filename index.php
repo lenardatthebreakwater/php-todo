@@ -32,6 +32,8 @@
 	$stmt = null;
 	?>
 
+	<button id="showActiveBtn">Active</button>
+	<button id="showCompletedBtn">Completed</button>
 	<button id="deleteTodosBtn">Clear Completed</button>
 
 	<script src="index.js"></script>
