@@ -50,6 +50,7 @@ function showCompleted() {
 		li.setAttribute("value", `${key}`)
 		li.append(localStorage.getItem(key))
 		li.classList.add("toBeDeleted")
+		li.classList.add("very-dark-desaturated-blue-bg")
 		li.addEventListener("click", toggleTodoFromStorage)
 		ul.append(li)
 	})
@@ -86,9 +87,6 @@ function getTodosFromStorage() {
 
 function displayRemainingTodos(responseBody) {
 	let ul = document.querySelector("ul")
-	ul.innerHTML = ""
-
-	console.log(responseBody)
 
 	Object.keys(responseBody).forEach((key) => {
 		let li = document.createElement("li")
@@ -97,6 +95,12 @@ function displayRemainingTodos(responseBody) {
 		li.addEventListener("click", toggleTodoFromStorage)
 		ul.append(li)
 	})
+
+	location.reload()
+}
+
+function displayNumberOfActiveTodos() {
+
 }
 
 main()
