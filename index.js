@@ -3,6 +3,7 @@ function main() {
 	for (let i = 0; i < allTodo.length; i++) {
 		if (localStorage.getItem(allTodo[i].value) !== null) {
 			allTodo[i].classList.add("toBeDeleted")
+			allTodo[i].classList.add("dark-grayish-blue-font")
 		}
 		allTodo[i].addEventListener("click", toggleTodoFromStorage)
 	}
@@ -33,12 +34,14 @@ function toggleTodoFromStorage() {
 		let todoItem = this.innerText
 		console.log(this)
 		this.classList.add("toBeDeleted")
+		this.classList.add("dark-grayish-blue-font")
 		localStorage.setItem(todoID, todoItem)
 		return
 	}
 
 	localStorage.removeItem(this.value)
 	this.classList.remove("toBeDeleted")
+	this.classList.remove("dark-grayish-blue-font")
 }
 
 function showCompleted() {
@@ -50,6 +53,7 @@ function showCompleted() {
 		li.setAttribute("value", `${key}`)
 		li.append(localStorage.getItem(key))
 		li.classList.add("toBeDeleted")
+		li.classList.add("dark-grayish-blue-font")
 		li.classList.add("very-dark-desaturated-blue-bg")
 		li.addEventListener("click", toggleTodoFromStorage)
 		ul.append(li)

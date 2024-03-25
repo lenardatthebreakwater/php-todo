@@ -11,7 +11,7 @@
 		<h1 class="big-text">TODO</h1>
 
 		<form method="POST" action="/addtodo.php">
-			<input class="very-dark-desaturated-blue-bg" type="text" name="todo_item" id="todo_item" placeholder="Create a new todo..." autofocus required>
+			<input class="very-dark-desaturated-blue-bg" type="text" name="todo_item" id="todo_item" placeholder="Create a new todo..." required>
 			<button type="submit" hidden>Add Todo Item</button>
 		</form>
 	</header>
