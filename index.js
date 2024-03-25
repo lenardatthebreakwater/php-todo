@@ -14,7 +14,6 @@ function main() {
 		ul.innerHTML = ""
 
 		allTodo.forEach((li) => {
-			console.log(li)
 			if (localStorage.getItem(li.value) === null) {
 				ul.append(li)
 			}
@@ -90,7 +89,13 @@ function getTodosFromStorage() {
 }
 
 function displayRemainingTodos(responseBody) {
+	let todoListFooter = document.querySelector("#todoListFooter")
 	let ul = document.querySelector("ul")
+	ul.innerHTML = ""
+
+	if (Object.keys(responseBody).length === 0) {
+		todoListFooter.style.display = "none"
+	}
 
 	Object.keys(responseBody).forEach((key) => {
 		let li = document.createElement("li")
