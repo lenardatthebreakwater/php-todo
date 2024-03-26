@@ -15,8 +15,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 ## Overview
 
 ### Screenshot
-
-![Capture](https://github.com/lenardatthebreakwater/php-todo/assets/142602437/dc842515-7c09-439a-a80b-e5a21fb0c5aa)
+![Capture](https://github.com/lenardatthebreakwater/php-todo/assets/142602437/d291c590-f1a6-4465-8257-72bd9280dbe0)
 
 ### Links
 
