@@ -1,3 +1,5 @@
+let cachedResponse
+
 function main() {
 	let allTodo = document.querySelectorAll("li")
 	for (let i = 0; i < allTodo.length; i++) {
@@ -13,6 +15,28 @@ function main() {
 	showActiveBtn.addEventListener("click", () => {
 		let ul = document.querySelector("ul")
 		ul.innerHTML = ""
+
+		if (cachedResponse !== undefined) {
+			Object.keys(cachedResponse).forEach((key) => {
+				let li = document.createElement("li")
+				li.setAttribute("value", `${key}`)
+				li.classList.add("very-dark-desaturated-blue-bg")
+				li.addEventListener("click", toggleTodoFromStorage)
+
+				let div = document.createElement("div")
+				div.classList.add("small-circle")
+
+				let img = document.createElement("img")
+				img.setAttribute("src", "images/icon-check.svg")
+				img.setAttribute("alt", "A Check")
+
+				div.append(img)
+				li.append(div)
+				li.append(cachedResponse[key])
+				ul.append(li)
+			})
+			return
+		}
 
 		allTodo.forEach((li) => {
 			if (localStorage.getItem(li.value) === null) {
@@ -82,6 +106,7 @@ function deleteTodos() {
 	})
 	.then((response) => response.json())
 	.then((responseBody) => (displayRemainingTodos(responseBody)))
+	.then()
 }
 
 function getTodosFromStorage() {
@@ -129,7 +154,7 @@ function displayRemainingTodos(responseBody) {
 		ul.append(li)
 	})
 
-	location.reload()
+	cachedResponse = responseBody
 }
 
 main()
