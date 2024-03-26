@@ -27,7 +27,7 @@
 
 		echo "<ul>";
 		for ($i = 0; $i < count($rows); $i++) {
-			echo "<li value={$rows[$i]["todo_id"]} class='very-dark-desaturated-blue-bg'>{$rows[$i]["todo_item"]}</li>";
+			echo "<li value={$rows[$i]["todo_id"]} class='very-dark-desaturated-blue-bg'><div class='small-circle'><img src='images/icon-check.svg' alt='A Check'></div>{$rows[$i]["todo_item"]}</li>";
 		}
 		echo "</ul>";
 

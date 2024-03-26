@@ -4,6 +4,7 @@ function main() {
 		if (localStorage.getItem(allTodo[i].value) !== null) {
 			allTodo[i].classList.add("toBeDeleted")
 			allTodo[i].classList.add("dark-grayish-blue-font")
+			allTodo[i].childNodes[0].classList.add("checked")
 		}
 		allTodo[i].addEventListener("click", toggleTodoFromStorage)
 	}
@@ -31,9 +32,9 @@ function toggleTodoFromStorage() {
 	if (localStorage.getItem(this.value) === null) {
 		let todoID = this.value
 		let todoItem = this.innerText
-		console.log(this)
 		this.classList.add("toBeDeleted")
 		this.classList.add("dark-grayish-blue-font")
+		this.childNodes[0].classList.add("checked")
 		localStorage.setItem(todoID, todoItem)
 		return
 	}
@@ -41,6 +42,7 @@ function toggleTodoFromStorage() {
 	localStorage.removeItem(this.value)
 	this.classList.remove("toBeDeleted")
 	this.classList.remove("dark-grayish-blue-font")
+	this.childNodes[0].classList.remove("checked")
 }
 
 function showCompleted() {
@@ -50,11 +52,22 @@ function showCompleted() {
 	Object.keys(localStorage).forEach((key) => {
 		let li = document.createElement("li")
 		li.setAttribute("value", `${key}`)
-		li.append(localStorage.getItem(key))
 		li.classList.add("toBeDeleted")
 		li.classList.add("dark-grayish-blue-font")
 		li.classList.add("very-dark-desaturated-blue-bg")
 		li.addEventListener("click", toggleTodoFromStorage)
+
+		let div = document.createElement("div")
+		div.classList.add("small-circle")
+		div.classList.add("checked")
+
+		let img = document.createElement("img")
+		img.setAttribute("src", "images/icon-check.svg")
+		img.setAttribute("alt", "A Check")
+
+		div.append(img)
+		li.append(div)
+		li.append(localStorage.getItem(key))
 		ul.append(li)
 	})
 }
@@ -100,16 +113,23 @@ function displayRemainingTodos(responseBody) {
 	Object.keys(responseBody).forEach((key) => {
 		let li = document.createElement("li")
 		li.setAttribute("value", `${key}`)
-		li.append(responseBody[key])
+		li.classList.add("very-dark-desaturated-blue-bg")
 		li.addEventListener("click", toggleTodoFromStorage)
+
+		let div = document.createElement("div")
+		div.classList.add("small-circle")
+
+		let img = document.createElement("img")
+		img.setAttribute("src", "images/icon-check.svg")
+		img.setAttribute("alt", "A Check")
+
+		div.append(img)
+		li.append(div)
+		li.append(responseBody[key])
 		ul.append(li)
 	})
 
 	location.reload()
-}
-
-function displayNumberOfActiveTodos() {
-
 }
 
 main()
