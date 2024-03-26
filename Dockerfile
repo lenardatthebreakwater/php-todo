@@ -6,4 +6,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["php", "-S", "localhost:5000", "-t", "."]
+CMD ["php", "-c", ".", "-S", "localhost:5000", "-t", "."]
