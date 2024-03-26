@@ -29,6 +29,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 - CSS (Media Queries, etc.)
 - Javascript (Fetch API, localStorage API, etc.)
 - PHP (PDO, etc.)
+- SQLite
 
 ### Useful resources
 
