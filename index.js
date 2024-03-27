@@ -1,4 +1,3 @@
-let cachedResponse
 
 function main() {
 	let allTodo = document.querySelectorAll("li")
@@ -10,43 +9,6 @@ function main() {
 		}
 		allTodo[i].addEventListener("click", toggleTodoFromStorage)
 	}
-
-	let showActiveBtn = document.querySelector("#showActiveBtn")
-	showActiveBtn.addEventListener("click", () => {
-		let ul = document.querySelector("ul")
-		ul.innerHTML = ""
-
-		if (cachedResponse !== undefined) {
-			Object.keys(cachedResponse).forEach((key) => {
-				let li = document.createElement("li")
-				li.setAttribute("value", `${key}`)
-				li.classList.add("very-dark-desaturated-blue-bg")
-				li.addEventListener("click", toggleTodoFromStorage)
-
-				let div = document.createElement("div")
-				div.classList.add("small-circle")
-
-				let img = document.createElement("img")
-				img.setAttribute("src", "images/icon-check.svg")
-				img.setAttribute("alt", "A Check")
-
-				div.append(img)
-				li.append(div)
-				li.append(cachedResponse[key])
-				ul.append(li)
-			})
-			return
-		}
-
-		allTodo.forEach((li) => {
-			if (localStorage.getItem(li.value) === null) {
-				ul.append(li)
-			}
-		})
-	})
-
-	let showCompletedBtn = document.querySelector("#showCompletedBtn")
-	showCompletedBtn.addEventListener("click", showCompleted)
 
 	let deleteTodosBtn = document.querySelector("#deleteTodosBtn")
 	deleteTodosBtn.addEventListener("click", deleteTodos)
@@ -67,33 +29,6 @@ function toggleTodoFromStorage() {
 	this.classList.remove("toBeDeleted")
 	this.classList.remove("dark-grayish-blue-font")
 	this.childNodes[0].classList.remove("checked")
-}
-
-function showCompleted() {
-	let ul = document.querySelector("ul")
-	ul.innerHTML = ""
-
-	Object.keys(localStorage).forEach((key) => {
-		let li = document.createElement("li")
-		li.setAttribute("value", `${key}`)
-		li.classList.add("toBeDeleted")
-		li.classList.add("dark-grayish-blue-font")
-		li.classList.add("very-dark-desaturated-blue-bg")
-		li.addEventListener("click", toggleTodoFromStorage)
-
-		let div = document.createElement("div")
-		div.classList.add("small-circle")
-		div.classList.add("checked")
-
-		let img = document.createElement("img")
-		img.setAttribute("src", "images/icon-check.svg")
-		img.setAttribute("alt", "A Check")
-
-		div.append(img)
-		li.append(div)
-		li.append(localStorage.getItem(key))
-		ul.append(li)
-	})
 }
 
 function deleteTodos() {
@@ -153,8 +88,6 @@ function displayRemainingTodos(responseBody) {
 		li.append(responseBody[key])
 		ul.append(li)
 	})
-
-	cachedResponse = responseBody
 }
 
 main()

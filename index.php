@@ -37,10 +37,8 @@
 
 		if (!empty($rows)) { 
 		echo"<div class='very-dark-desaturated-blue-bg' id='todoListFooter'>
-			<button id='showActiveBtn' class='very-dark-desaturated-blue-bg small-text dark-grayish-blue-font'>Active</button>
-			<button id='showCompletedBtn' class='very-dark-desaturated-blue-bg small-text dark-grayish-blue-font'>Completed</button>
-			<button id='deleteTodosBtn' class='very-dark-desaturated-blue-bg small-text dark-grayish-blue-font'>Clear Completed</button>
-		</div>";
+				<button id='deleteTodosBtn' class='very-dark-desaturated-blue-bg small-text dark-grayish-blue-font'>Clear Completed</button>
+			</div>";
 		}
 		?>
 	</main>
