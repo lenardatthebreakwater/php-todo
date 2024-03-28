@@ -37,9 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	header("HTTP/1.1 418 I'm a teapot");
+	echo "418 I'm a teapot";
 	exit;
 }
 
 header("HTTP/1.1 405 Method Not Allowed");
+echo "405 Method Not Allowed";
 exit;
 ?>

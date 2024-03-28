@@ -1,5 +1,9 @@
 
 function main() {
+	fetch("/numoftodos.php")
+	.then((response) => response.json())
+	.then((responseBody) => clearLocalStorage(responseBody))
+
 	let allTodo = document.querySelectorAll("li")
 	for (let i = 0; i < allTodo.length; i++) {
 		if (localStorage.getItem(allTodo[i].value) !== null) {
@@ -12,6 +16,12 @@ function main() {
 
 	let deleteTodosBtn = document.querySelector("#deleteTodosBtn")
 	deleteTodosBtn.addEventListener("click", deleteTodos)
+}
+
+function clearLocalStorage(responseBody) {
+	if (responseBody === 0) {
+		localStorage.clear()
+	}
 }
 
 function toggleTodoFromStorage() {
